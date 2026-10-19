@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SKILLSWAP_BACKEND_INTERVIEW_QA.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="skillswap-backend-architecture-and-interview-qa">SkillSwap Backend Architecture and Interview Q&amp;A</h1>
+<h2 id="project-resume-context">Project Resume Context</h2>
+<p>SkillSwap – Service Marketplace Platform<br>
+Full Stack Web Application</p>
+<ul>
+<li>Built a full stack service marketplace with React and Spring Boot, implementing clean MVC architecture with RESTful APIs and a responsive component-based frontend.</li>
+<li>Secured the platform with stateless JWT authentication, access/refresh tokens, and OAuth2 social login (Google, GitHub) using Spring Security, with Axios interceptors for automatic token refresh.</li>
+<li>Implemented role-based access control (USER, PROVIDER, ADMIN) with a 6-state booking lifecycle and an automated review aggregation engine that recalculates service and provider ratings in real time.</li>
+</ul>
+<h2 id="important-resume-accuracy">Important Resume Accuracy</h2>
+<p>The code supports JWT access and refresh tokens, but refresh-token rotation is currently client-side only. The refresh endpoint generates a new refresh token but does not store, revoke, or compare refresh tokens against a server-side record.</p>
+<p>The booking model defines six statuses, but strict state-transition rules are not currently enforced. The backend accepts a requested enum status and saves it. A production implementation should validate allowed transitions and restrict them by actor role.</p>
+<h2 id="skillswap-overall-architecture">SkillSwap Overall Architecture</h2>
+<p>SkillSwap is a two-tier application:</p>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart LR
+    Browser[React SPA] -->|Axios /api requests| API[Spring Boot REST API]
+    API --> Security[Spring Security JWT/OAuth2]
+    API --> Services[Business Services]
+    Services --> Mongo[(MongoDB)]
+    Services --> Mail[Email service]
+</div></code></pre>
+<ul>
+<li>Frontend: React 18, React Router, Vite, Tailwind CSS, Axios</li>
+<li>Backend: Spring Boot 3.2, Java 21</li>
+<li>Database: MongoDB through Spring Data MongoDB</li>
+<li>Authentication: JWT access/refresh tokens, Google/GitHub OAuth2</li>
+<li>Communication: REST/JSON APIs under <code>/api</code></li>
+<li>Development servers: frontend on port <code>3000</code>, backend on port <code>8080</code></li>
+<li>Vite proxies <code>/api</code> and <code>/oauth2</code> requests to Spring Boot</li>
+</ul>
+<h2 id="frontend-structure">Frontend Structure</h2>
+<p>The frontend is the user-facing layer.</p>
+<h3 id="application-shell">Application Shell</h3>
+<p><code>App.jsx</code> defines:</p>
+<ul>
+<li>Browser routing</li>
+<li>Public routes such as services and provider profiles</li>
+<li>Guest-only routes such as login and registration</li>
+<li>Protected routes such as bookings, messages, and dashboards</li>
+<li><code>ProtectedRoute</code> and <code>GuestRoute</code> access guards</li>
+<li>Global authentication through <code>AuthProvider</code></li>
+<li>Global toast notifications</li>
+</ul>
+<h3 id="pages">Pages</h3>
+<p>Pages represent complete user workflows:</p>
+<ul>
+<li><code>HomePage.jsx</code></li>
+<li><code>ServicesPage.jsx</code></li>
+<li><code>ServiceDetailPage.jsx</code></li>
+<li><code>BookingsPage.jsx</code></li>
+<li><code>MessagesPage.jsx</code></li>
+<li><code>ProfilePage.jsx</code></li>
+</ul>
+<p>They coordinate data loading, user interaction, and page-level state.</p>
+<h3 id="components">Components</h3>
+<p>Reusable UI is split into feature areas:</p>
+<ul>
+<li><code>components/services</code>: service cards and reviews</li>
+<li><code>components/booking</code>: booking presentation</li>
+<li><code>components/profile</code>: profile UI</li>
+<li><code>components/common</code>: navbar, footer, ratings</li>
+<li><code>components/auth</code>: authentication-specific UI</li>
+</ul>
+<p>This is effectively the frontend View layer, although React components also contain presentation-oriented controller logic such as event handlers and API calls.</p>
+<h3 id="client-api-layer">Client API Layer</h3>
+<p><code>frontend/src/utils/api.js</code> centralizes REST calls:</p>
+<pre class="hljs"><code><div>authApi     -&gt; /api/auth/*
+userApi     -&gt; /api/users/*
+serviceApi  -&gt; /api/services/*
+bookingApi  -&gt; /api/bookings/*
+reviewApi   -&gt; /api/reviews/*
+messageApi  -&gt; /api/messages/*
+</div></code></pre>
+<p>It also:</p>
+<ol>
+<li>Reads the JWT from <code>localStorage</code>.</li>
+<li>Adds it as a <code>Bearer</code> token to every request.</li>
+<li>Attempts refresh-token recovery on HTTP <code>401</code>.</li>
+<li>Redirects to login if refreshing fails.</li>
+</ol>
+<p><code>AuthContext.jsx</code> restores the current user on startup, exposes login/register/logout methods, and provides role helpers such as <code>isProvider</code> and <code>isAdmin</code>.</p>
+<h2 id="backend-mvc-structure">Backend MVC Structure</h2>
+<p>The backend follows a layered REST version of MVC:</p>
+<pre class="hljs"><code><div>HTTP request
+    |
+Controller
+    |
+DTO validation
+    |
+Service / business logic
+    |
+Repository
+    |
+MongoDB
+</div></code></pre>
+<h3 id="model">Model</h3>
+<p>The <code>model</code> package contains MongoDB documents and domain state:</p>
+<ul>
+<li><code>User.java</code></li>
+<li><code>Service.java</code></li>
+<li><code>Booking.java</code></li>
+<li><code>Review.java</code></li>
+<li><code>Message.java</code></li>
+</ul>
+<p>For example, <code>Service.java</code> represents a marketplace listing with provider information, title and description, category and tags, price and pricing type, images and features, rating and booking counters, active/status flags, and timestamps.</p>
+<p><code>@Document</code> maps these classes to MongoDB collections, while <code>@CreatedDate</code> and <code>@LastModifiedDate</code> provide auditing.</p>
+<h3 id="dtos">DTOs</h3>
+<p>The <code>dto</code> package defines request and response shapes:</p>
+<ul>
+<li><code>AuthDto.java</code></li>
+<li><code>ServiceDto.java</code></li>
+<li><code>BookingDto.java</code></li>
+<li><code>ReviewDto.java</code></li>
+<li><code>UserDto.java</code></li>
+</ul>
+<p>DTOs are especially important for incoming data. For example, <code>CreateServiceRequest</code> uses validation annotations such as <code>@NotBlank</code>, <code>@NotNull</code>, and <code>@Positive</code>.</p>
+<h3 id="controllers">Controllers</h3>
+<p>Controllers are the HTTP-facing part of the backend:</p>
+<ul>
+<li><code>AuthController.java</code></li>
+<li><code>UserController.java</code></li>
+<li><code>ServiceController.java</code></li>
+<li><code>BookingController.java</code></li>
+<li><code>ReviewController.java</code></li>
+<li><code>MessageController.java</code></li>
+</ul>
+<p>They are responsible for mapping URLs and HTTP methods, reading path/query/body parameters, obtaining the authenticated user, calling a service, and returning HTTP status codes and JSON responses.</p>
+<h3 id="services">Services</h3>
+<p>The <code>service</code> package owns application logic:</p>
+<ul>
+<li><code>AuthService</code></li>
+<li><code>UserService</code></li>
+<li><code>ServiceService</code></li>
+<li><code>BookingService</code></li>
+<li><code>ReviewService</code></li>
+<li><code>MessageService</code></li>
+</ul>
+<p>For creating a service:</p>
+<ol>
+<li><code>ServiceController</code> receives <code>POST /api/services</code>.</li>
+<li>Spring validates <code>CreateServiceRequest</code>.</li>
+<li>The controller extracts the authenticated user's email.</li>
+<li><code>ServiceService</code> loads the user.</li>
+<li>It promotes the user to provider status.</li>
+<li>It constructs a <code>Service</code> model.</li>
+<li>It persists the model using <code>ServiceRepository</code>.</li>
+<li>The controller returns HTTP <code>201 Created</code>.</li>
+</ol>
+<p>The service layer also checks ownership. Updating or deleting a service requires that the authenticated user owns the service.</p>
+<h3 id="repositories">Repositories</h3>
+<p>Repositories abstract database access:</p>
+<ul>
+<li><code>UserRepository</code></li>
+<li><code>ServiceRepository</code></li>
+<li><code>BookingRepository</code></li>
+<li><code>ReviewRepository</code></li>
+<li><code>MessageRepository</code></li>
+</ul>
+<p><code>ServiceRepository</code> extends <code>MongoRepository</code>, giving the application standard CRUD operations. It also defines derived queries and custom MongoDB queries for active services, category filtering, provider filtering, keyword search, pagination, and sorting.</p>
+<h2 id="example-service-detail-and-booking-flow">Example Service Detail and Booking Flow</h2>
+<p>A typical user journey is:</p>
+<pre class="hljs"><code><div>ServiceDetailPage
+    -&gt; serviceApi.getById(id)
+    -&gt; GET /api/services/{id}
+    -&gt; ServiceController
+    -&gt; ServiceService
+    -&gt; ServiceRepository
+    -&gt; MongoDB
+</div></code></pre>
+<p>When the user books the service:</p>
+<pre class="hljs"><code><div>ServiceDetailPage
+    -&gt; bookingApi.create(...)
+    -&gt; POST /api/bookings
+    -&gt; BookingController
+    -&gt; BookingService
+    -&gt; BookingRepository
+    -&gt; MongoDB
+</div></code></pre>
+<p><code>ServiceDetailPage.jsx</code> loads the service and reviews in parallel. The booking sidebar collects a schedule date and notes, then sends the booking request.</p>
+<p><code>BookingController.java</code> uses <code>@AuthenticationPrincipal</code> to ensure the booking is associated with the authenticated user.</p>
+<h2 id="authentication-and-security">Authentication and Security</h2>
+<p><code>SecurityConfig.java</code> configures:</p>
+<ul>
+<li>Stateless sessions</li>
+<li>JWT authentication</li>
+<li>CORS for the frontend</li>
+<li>BCrypt password hashing</li>
+<li>Public authentication endpoints</li>
+<li>Public service/review GET endpoints</li>
+<li>Admin-only endpoints</li>
+<li>OAuth2 login</li>
+<li>The JWT filter before Spring's username/password filter</li>
+</ul>
+<p>The security flow is:</p>
+<pre class="hljs"><code><div>Login form
+    -&gt; POST /api/auth/login
+    -&gt; AuthService
+    -&gt; AuthenticationManager
+    -&gt; BCrypt password verification
+    -&gt; JWT and refresh token
+    -&gt; React localStorage
+    -&gt; Bearer token on later requests
+</div></code></pre>
+<p>JWT implementation is located in:</p>
+<ul>
+<li><code>JwtAuthenticationFilter.java</code></li>
+<li><code>JwtUtils.java</code></li>
+<li><code>UserDetailsServiceImpl.java</code></li>
+</ul>
+<p>OAuth2 success handling is implemented by <code>OAuth2AuthenticationSuccessHandler</code>.</p>
+<h2 id="application-startup">Application Startup</h2>
+<p><code>SkillSwapApplication.java</code> starts Spring Boot and enables:</p>
+<ul>
+<li>MongoDB auditing</li>
+<li>Asynchronous operations</li>
+<li>Component scanning for controllers, services, repositories, and security classes</li>
+</ul>
+<h2 id="top-50-backend-interview-questions-and-answers">Top 50 Backend Interview Questions and Answers</h2>
+<h3 id="architecture-and-mvc">Architecture and MVC</h3>
+<h4 id="1-what-architecture-did-you-use">1. What architecture did you use?</h4>
+<p>SkillSwap uses a React frontend and Spring Boot REST backend. The backend follows a layered architecture:</p>
+<pre class="hljs"><code><div>Controller -&gt; Service -&gt; Repository -&gt; MongoDB
+</div></code></pre>
+<p>Spring Security operates across the request pipeline, and React consumes the backend's JSON responses.</p>
+<h4 id="2-how-does-mvc-apply-to-this-project">2. How does MVC apply to this project?</h4>
+<p>The model is represented by MongoDB document classes such as <code>User</code>, <code>Service</code>, <code>Booking</code>, <code>Review</code>, and <code>Message</code>. Spring REST controllers act as controllers, while React pages and components provide the view layer. The service layer contains business logic between controllers and repositories.</p>
+<h4 id="3-why-did-you-separate-controllers-and-services">3. Why did you separate controllers and services?</h4>
+<p>Controllers focus on HTTP concerns such as routing, request parsing, validation, and response status codes. Services contain business rules, authorization checks, entity creation, and coordination between repositories. This improves maintainability and testability.</p>
+<h4 id="4-what-is-the-request-flow-for-creating-a-service">4. What is the request flow for creating a service?</h4>
+<pre class="hljs"><code><div>React form
+-&gt; POST /api/services
+-&gt; ServiceController
+-&gt; ServiceService
+-&gt; UserRepository and ServiceRepository
+-&gt; MongoDB
+</div></code></pre>
+<p>The controller validates the request and identifies the authenticated user. The service applies business logic and persists the service.</p>
+<h4 id="5-what-is-the-purpose-of-the-dto-layer">5. What is the purpose of the DTO layer?</h4>
+<p>DTOs define the input and output contract of the API. For example, <code>CreateServiceRequest</code> contains only fields allowed when creating a service and applies validation using <code>@NotBlank</code>, <code>@NotNull</code>, and <code>@Positive</code>.</p>
+<h4 id="6-why-not-directly-expose-entities-as-api-responses">6. Why not directly expose entities as API responses?</h4>
+<p>Directly exposing entities can reveal internal fields, create tight coupling between persistence and API contracts, and make future schema changes harder. A production improvement would be to consistently map entities to response DTOs instead of returning entities directly in several controllers.</p>
+<h4 id="7-what-does-restcontroller-do">7. What does <code>@RestController</code> do?</h4>
+<p><code>@RestController</code> combines <code>@Controller</code> and <code>@ResponseBody</code>. It tells Spring that the class handles HTTP requests and that return values should be serialized, usually as JSON.</p>
+<h4 id="8-what-does-requestmappingapiservices-do">8. What does <code>@RequestMapping(&quot;/api/services&quot;)</code> do?</h4>
+<p>It defines a common URL prefix for all methods in <code>ServiceController</code>. For example, a method annotated with <code>@GetMapping(&quot;/{id}&quot;)</code> handles <code>GET /api/services/{id}</code>.</p>
+<h4 id="9-how-is-request-validation-implemented">9. How is request validation implemented?</h4>
+<p>The controller uses <code>@Valid</code> on request bodies, and DTO fields contain Jakarta validation annotations. Invalid input is rejected by Spring's validation mechanism before normal business logic executes.</p>
+<h4 id="10-what-would-you-improve-in-the-error-handling-design">10. What would you improve in the error-handling design?</h4>
+<p>I would add a global <code>@RestControllerAdvice</code> exception handler. Currently, many controllers catch broad <code>Exception</code> types and return <code>400 Bad Request</code>. A centralized handler could produce consistent responses for validation errors, not-found errors, authorization failures, and unexpected server errors.</p>
+<h3 id="spring-boot-and-mongodb">Spring Boot and MongoDB</h3>
+<h4 id="11-why-did-you-choose-mongodb">11. Why did you choose MongoDB?</h4>
+<p>SkillSwap has flexible marketplace documents containing arrays such as tags, features, and images. MongoDB's document model maps naturally to these structures and supports rapid schema evolution.</p>
+<h4 id="12-what-does-mongorepository-provide">12. What does <code>MongoRepository</code> provide?</h4>
+<p><code>MongoRepository</code> provides CRUD operations, pagination, sorting, and query integration. For example, <code>ServiceRepository</code> inherits methods such as <code>findById</code> and <code>save</code>.</p>
+<h4 id="13-how-do-derived-queries-work">13. How do derived queries work?</h4>
+<p>Spring Data derives queries from method names. For example:</p>
+<pre class="hljs"><code><div>findByProviderIdAndActiveTrue(String providerId)
+</div></code></pre>
+<p>is translated into a MongoDB query filtering by provider ID and <code>active = true</code>.</p>
+<h4 id="14-how-does-service-searching-work">14. How does service searching work?</h4>
+<p><code>ServiceRepository</code> uses a custom MongoDB query with case-insensitive regular expressions against the title, description, and tags. Results are paginated and sorted by rating or creation date.</p>
+<h4 id="15-how-is-pagination-implemented">15. How is pagination implemented?</h4>
+<p>Controllers accept <code>page</code> and <code>size</code> query parameters. Services create a <code>PageRequest</code> with sorting, then pass it to the repository. MongoDB returns a Spring <code>Page</code> containing content and pagination metadata.</p>
+<h4 id="16-what-is-the-purpose-of-document">16. What is the purpose of <code>@Document</code>?</h4>
+<p><code>@Document(collection = &quot;services&quot;)</code> maps a Java class to a MongoDB collection. The <code>Service</code> model is stored in the <code>services</code> collection.</p>
+<h4 id="17-what-does-id-represent">17. What does <code>@Id</code> represent?</h4>
+<p><code>@Id</code> identifies the document's primary key. In this project, MongoDB document IDs are represented as strings.</p>
+<h4 id="18-what-does-mongodb-auditing-provide">18. What does MongoDB auditing provide?</h4>
+<p><code>@EnableMongoAuditing</code> enables automatic population of fields annotated with <code>@CreatedDate</code> and <code>@LastModifiedDate</code>. This is used on models such as <code>User</code>, <code>Service</code>, and <code>Booking</code>.</p>
+<h4 id="19-why-is-the-user-email-indexed-uniquely">19. Why is the user email indexed uniquely?</h4>
+<p>The email field has <code>@Indexed(unique = true)</code>. This prevents duplicate accounts from being created with the same email at the database level.</p>
+<h4 id="20-what-database-improvement-would-you-make">20. What database improvement would you make?</h4>
+<p>I would add indexes for frequently queried fields such as <code>Service.providerId</code>, <code>Service.category</code>, <code>Service.active</code>, <code>Booking.clientId</code>, <code>Booking.providerId</code>, <code>Review.serviceId</code>, and <code>Review.providerId</code>. This would improve filtering and lookup performance as the data grows.</p>
+<h3 id="authentication-and-jwt">Authentication and JWT</h3>
+<h4 id="21-how-does-login-work">21. How does login work?</h4>
+<p>The client sends credentials to <code>POST /api/auth/login</code>. <code>AuthService</code> delegates authentication to Spring's <code>AuthenticationManager</code>. If authentication succeeds, the backend creates an access token and refresh token and returns them with user information.</p>
+<h4 id="22-how-is-the-password-verified">22. How is the password verified?</h4>
+<p>Passwords are encoded with <code>BCryptPasswordEncoder</code> during registration. During login, Spring Security compares the submitted password with the stored BCrypt hash.</p>
+<h4 id="23-why-use-bcrypt">23. Why use BCrypt?</h4>
+<p>BCrypt is a deliberately slow, salted password-hashing algorithm. It makes brute-force attacks more expensive than storing plaintext passwords or using a fast hash such as SHA-256 directly.</p>
+<h4 id="24-what-information-is-stored-in-the-jwt">24. What information is stored in the JWT?</h4>
+<p>The current token contains the user's email as the subject, along with issued-at and expiration timestamps. It is signed using an HMAC secret key.</p>
+<h4 id="25-how-does-the-jwt-filter-work">25. How does the JWT filter work?</h4>
+<p><code>JwtAuthenticationFilter</code> runs once per request. It reads the <code>Authorization</code> header, extracts the token after <code>Bearer</code>, verifies the token signature and expiration, loads the user by email, and places an authenticated principal into <code>SecurityContextHolder</code>.</p>
+<h4 id="26-why-are-sessions-configured-as-stateless">26. Why are sessions configured as stateless?</h4>
+<p>With stateless sessions, the server does not maintain an HTTP session for each user. Each request carries its authentication token. This is suitable for REST APIs and supports horizontal scaling more easily.</p>
+<h4 id="27-what-is-the-difference-between-an-access-token-and-a-refresh-token">27. What is the difference between an access token and a refresh token?</h4>
+<p>The access token is short-lived and used to access protected APIs. The refresh token has a longer lifetime and is used to obtain a new access token after expiration.</p>
+<h4 id="28-does-this-project-implement-secure-server-side-refresh-token-rotation">28. Does this project implement secure server-side refresh-token rotation?</h4>
+<p>Not fully. The refresh endpoint validates the refresh token's signature and expiration, then generates a new access token and refresh token. However, refresh tokens are not stored or revoked server-side. A stronger implementation would persist a token family or token identifier and invalidate the old token after use.</p>
+<h4 id="29-how-does-automatic-token-refresh-work">29. How does automatic token refresh work?</h4>
+<p>The frontend Axios response interceptor detects a <code>401</code> response. It sends the stored refresh token to <code>/api/auth/refresh</code>, stores the returned tokens, adds the new access token to the original request, and retries it.</p>
+<h4 id="30-what-happens-if-refresh-fails">30. What happens if refresh fails?</h4>
+<p>The frontend clears local storage and redirects the user to <code>/login</code>.</p>
+<h4 id="31-where-should-the-jwt-secret-be-stored">31. Where should the JWT secret be stored?</h4>
+<p>It should be stored in environment variables or a secret manager such as Azure Key Vault, not committed to <code>application.properties</code>. The current configuration contains sensitive-looking OAuth credentials and should be rotated if they are real.</p>
+<h4 id="32-what-are-weaknesses-of-storing-jwts-in-local-storage">32. What are weaknesses of storing JWTs in local storage?</h4>
+<p>JavaScript can access local storage, so an XSS vulnerability could expose the tokens. A stronger design often uses secure, <code>HttpOnly</code>, <code>SameSite</code> cookies, combined with appropriate CSRF protection.</p>
+<h3 id="oauth2-and-authorization">OAuth2 and Authorization</h3>
+<h4 id="33-how-does-oauth2-login-work">33. How does OAuth2 login work?</h4>
+<p>The user authenticates with Google or GitHub through Spring Security OAuth2. After successful authentication, <code>OAuth2AuthenticationSuccessHandler</code> reads provider attributes, creates or updates the local user, generates a JWT, and redirects the browser to the frontend callback URL.</p>
+<h4 id="34-how-are-google-and-github-users-identified">34. How are Google and GitHub users identified?</h4>
+<p>The handler reads provider-specific attributes such as <code>sub</code>, <code>login</code>, <code>email</code>, <code>name</code>, and avatar fields. It determines the provider and looks up the local user by email.</p>
+<h4 id="35-what-happens-for-a-first-time-oauth2-user">35. What happens for a first-time OAuth2 user?</h4>
+<p>A new local <code>User</code> document is created with the provider email, display name, avatar, provider name, <code>ROLE_USER</code>, and verified email status.</p>
+<h4 id="36-what-is-role-based-access-control-in-skillswap">36. What is role-based access control in SkillSwap?</h4>
+<p>The user model supports:</p>
+<pre class="hljs"><code><div>ROLE_USER
+ROLE_PROVIDER
+ROLE_ADMIN
+</div></code></pre>
+<p>Spring Security restricts admin endpoints to <code>ROLE_ADMIN</code>. Provider privileges are also enforced through ownership checks in service-layer methods.</p>
+<h4 id="37-how-does-the-application-protect-admin-endpoints">37. How does the application protect admin endpoints?</h4>
+<p><code>SecurityConfig</code> contains:</p>
+<pre class="hljs"><code><div>.requestMatchers(<span class="hljs-string">&quot;/api/admin/**&quot;</span>).hasRole(<span class="hljs-string">&quot;ADMIN&quot;</span>)
+</div></code></pre>
+<p>Only authenticated users with the admin role can access those routes.</p>
+<h4 id="38-how-are-service-ownership-checks-enforced">38. How are service ownership checks enforced?</h4>
+<p>When updating or deleting a service, <code>ServiceService</code> compares the authenticated user's ID with the service's <code>providerId</code>. If they do not match, it throws an authorization error.</p>
+<h4 id="39-is-checking-ownership-only-in-the-frontend-sufficient">39. Is checking ownership only in the frontend sufficient?</h4>
+<p>No. Frontend checks are only for user experience. Authorization must be enforced on the backend because clients can bypass or modify frontend code. SkillSwap correctly performs important ownership checks in the service layer.</p>
+<h4 id="40-how-is-cors-configured">40. How is CORS configured?</h4>
+<p>CORS is configured in <code>SecurityConfig</code>. The allowed frontend origin comes from <code>app.cors.allowedOrigins</code>, and allowed methods include <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code>, and <code>OPTIONS</code>.</p>
+<h3 id="services-bookings-and-reviews">Services, Bookings, and Reviews</h3>
+<h4 id="41-what-happens-when-a-user-creates-a-service">41. What happens when a user creates a service?</h4>
+<p>The backend loads the authenticated user, adds <code>ROLE_PROVIDER</code> to the user's roles, copies provider information into the service, initializes rating, review count, and booking count, marks the service active, and saves it in MongoDB.</p>
+<h4 id="42-why-copy-provider-information-into-the-service-document">42. Why copy provider information into the service document?</h4>
+<p>Copying provider name, avatar, and rating makes service listing responses faster because the API does not need to join user data for every result. The tradeoff is possible stale duplicated data when the provider later changes their profile.</p>
+<h4 id="43-what-are-the-booking-states">43. What are the booking states?</h4>
+<p>The <code>BookingStatus</code> enum contains six states:</p>
+<pre class="hljs"><code><div>PENDING
+CONFIRMED
+IN_PROGRESS
+COMPLETED
+CANCELLED
+DISPUTED
+</div></code></pre>
+<p>The booking also has an independent payment status:</p>
+<pre class="hljs"><code><div>PENDING
+PAID
+REFUNDED
+FAILED
+</div></code></pre>
+<h4 id="44-how-is-a-booking-created">44. How is a booking created?</h4>
+<p>The backend loads the client and service, prevents users from booking their own service, copies relevant service and client details into the booking, sets the initial status to <code>PENDING</code>, and saves it.</p>
+<h4 id="45-how-are-bookings-restricted-to-the-correct-users">45. How are bookings restricted to the correct users?</h4>
+<p>For booking details and status updates, the service checks whether the authenticated user is either the booking's client or provider. Unrelated users receive an authorization failure.</p>
+<h4 id="46-does-the-current-code-enforce-valid-booking-transitions">46. Does the current code enforce valid booking transitions?</h4>
+<p>Not strictly. It accepts the requested enum status and saves it. A stronger implementation would define valid transitions, for example:</p>
+<pre class="hljs"><code><div>PENDING -&gt; CONFIRMED
+CONFIRMED -&gt; IN_PROGRESS
+IN_PROGRESS -&gt; COMPLETED
+PENDING -&gt; CANCELLED
+</div></code></pre>
+<p>It should also restrict which actor can perform each transition.</p>
+<h4 id="47-how-does-review-creation-work">47. How does review creation work?</h4>
+<p>A review can be created only when the booking exists, the authenticated user is the booking's client, the booking status is <code>COMPLETED</code>, and no review already exists for that booking. The review is then saved and the booking is marked as reviewed.</p>
+<h4 id="48-how-are-service-ratings-calculated">48. How are service ratings calculated?</h4>
+<p>After a review is created, the service retrieves reviews, filters them for the relevant service, calculates the arithmetic mean, rounds it to one decimal place, updates the service rating, updates the review count, and saves the service.</p>
+<h4 id="49-how-are-provider-ratings-calculated">49. How are provider ratings calculated?</h4>
+<p>The backend retrieves all reviews for the provider, calculates the average rating, rounds it to one decimal place, updates the provider's rating and review count, and saves the user.</p>
+<h4 id="50-what-improvements-would-you-make-before-production">50. What improvements would you make before production?</h4>
+<p>I would prioritize:</p>
+<ul>
+<li>Add global exception handling with <code>@RestControllerAdvice</code>.</li>
+<li>Enforce valid booking-state transitions.</li>
+<li>Restrict booking status changes by client/provider role.</li>
+<li>Implement server-side refresh-token rotation and revocation.</li>
+<li>Use response DTOs consistently.</li>
+<li>Add database indexes for common queries.</li>
+<li>Add unit and integration tests.</li>
+<li>Use environment variables or a secret manager for credentials.</li>
+<li>Improve review aggregation with database aggregation queries instead of loading all provider reviews into memory.</li>
+<li>Add transactions or compensating logic for multi-document operations.</li>
+<li>Add rate limiting and stronger validation for public endpoints.</li>
+</ul>
+<h2 id="final-interview-summary">Final Interview Summary</h2>
+<p>I built SkillSwap as a layered Spring Boot REST API backed by MongoDB. Controllers handle HTTP and validation, services contain marketplace and authorization rules, and repositories encapsulate persistence. Security is stateless and uses Spring Security with JWT authentication, refresh tokens, OAuth2 login, BCrypt passwords, and role-based authorization. The main domain flows are service creation, provider ownership, booking lifecycle management, and review-driven rating recalculation.</p>
+
+</body>
+</html>
